@@ -125,11 +125,10 @@ def read_chat():
 
 def llm(message):
 
-    openai.api_key = OAI.key
+    genai.configure(api_key=OAI.key)
+    openai = genai.GenerativeModel('gemini-1.5-flash')
     start_sequence = " #########"
-    response = openai.Completion.create(
-      model= OAI.model,
-      prompt= OAI.prompt + "\n\n#########\n" + message + "\n#########\n",
+    response = openai.generate_content(OAI.prompt + "\n\n#########\n" + message + "\n#########\n",)
       temperature = OAI.temperature,
       max_tokens = OAI.max_tokens,
       top_p = OAI.top_p,
