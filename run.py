@@ -126,7 +126,7 @@ def read_chat():
 def llm(message):
 
     genai.configure(api_key=OAI.key)
-    openai = genai.GenerativeModel('gemini-1.5-flash')
+    openai = genai.GenerativeModel('gemini-1.5-pro')
     start_sequence = " #########"
     response = openai.generate_content(OAI.prompt + "\n\n#########\n" + message + "\n#########\n",)
       temperature = OAI.temperature,
@@ -136,8 +136,7 @@ def llm(message):
       presence_penalty = OAI.presence_penalty
     )
 
-    json_object = json.loads(str(response))
-    return(json_object['choices'][0]['text'])
+    return response.text
 
 
 if __name__ == "__main__":
