@@ -1,5 +1,5 @@
 import pytchat
-import openai
+import google.generativeai as genai
 import json
 from pytchat import LiveChat, SpeedCalculator
 import time
